@@ -226,7 +226,7 @@ export const PaymentForm: FC<PaymentFormProps> = ({ paymentToken }) => {
 
               <Stack spacing='5'>
                 <FormControl>
-                  <FormLabel htmlFor='email'>Name</FormLabel>
+                  <FormLabel htmlFor='name'>Name</FormLabel>
                   <Input id='name' {...register('name')} />
                 </FormControl>
 
