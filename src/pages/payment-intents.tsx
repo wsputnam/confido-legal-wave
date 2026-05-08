@@ -87,7 +87,7 @@ export const PaymentIntentPage: NextPage<
             </List>
           </Stack>
           {error ? (
-            <Alert status='error' borderRadius='xl'>
+            <Alert status='error' borderRadius='xl' alignSelf='start'>
               <AlertIcon />
               <AlertDescription>{error}</AlertDescription>
             </Alert>
