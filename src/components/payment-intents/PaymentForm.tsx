@@ -106,12 +106,13 @@ export const PaymentForm: FC<PaymentFormProps> = ({ paymentToken }) => {
 
         if (response.ok) {
           setResult(await response.json());
+        } else {
+          const body = await response.json().catch(() => null);
+          setError(body?.error || `Payment failed (${response.status})`);
         }
-
-        console.log(response);
       } catch (e) {
-        console.log('error: ', e);
-        setError(e);
+        console.error('Payment error:', e);
+        setError(e instanceof Error ? e.message : 'An unexpected error occurred');
       } finally {
         setLoading(false);
       }

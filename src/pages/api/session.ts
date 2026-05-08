@@ -7,7 +7,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 export interface Session {
   error?: any;
   user?: User;
-  firm?: Firm;
+  firm?: Omit<Firm, 'glApiToken'>;
   glFirm?: ConfidoLegalFirm;
 }
 
@@ -54,7 +54,8 @@ export default async function handler(
       }
     }
 
-    res.send({ user, firm, glFirm });
+    const { glApiToken, ...safeFirm } = firm;
+    res.send({ user, firm: safeFirm, glFirm });
   } catch (e: any) {
     res.statusCode = 401;
     res.send({ error: e.message });
